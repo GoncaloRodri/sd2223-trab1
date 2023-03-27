@@ -1,4 +1,4 @@
-package sd2223.trab1.server.ServerResources;
+package sd2223.trab1.server.serverResources;
 
 import java.util.ArrayList;
 import java.util.Collection;

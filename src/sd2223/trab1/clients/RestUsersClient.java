@@ -1,6 +1,7 @@
 package sd2223.trab1.clients;
 
 import java.net.URI;
+import java.util.HashMap;
 import java.util.List;
 
 import jakarta.ws.rs.client.Entity;
@@ -11,6 +12,7 @@ import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.Status;
 import sd2223.trab1.api.User;
 import sd2223.trab1.api.rest.UsersService;
+import sd2223.trab1.discovery.Discovery;
 
 public class RestUsersClient extends RestClient implements UsersService {
 

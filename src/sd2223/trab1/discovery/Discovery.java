@@ -23,10 +23,12 @@ public interface Discovery {
 
 	/**
 	 * Used to announce the URI of the given service name.
+	 * 
+	 * @param domain      - the domain of the service
 	 * @param serviceName - the name of the service
-	 * @param serviceURI - the uri of the service
+	 * @param serviceURI  - the uri of the service
 	 */
-	public void announce(String serviceName, String serviceURI);
+	public void announce(String domain, String serviceName, String serviceURI);
 
 	/**
 	 * Get discovered URIs for a given service name
@@ -67,7 +69,8 @@ class DiscoveryImpl implements Discovery {
 
 	private static Discovery singleton;
 
-	private Dictionary<String,List<URI>> dict = new Hashtable<String,List<URI>>();
+	private Dictionary<String, List<URI>> dict = new Hashtable<String, List<URI>>(); // ! IMPLEMENTAR UMA CACHE
+																						// ! MADAFAKINS INCARPATEDS
 
 	synchronized static Discovery getInstance() {
 		if (singleton == null) {
@@ -81,11 +84,11 @@ class DiscoveryImpl implements Discovery {
 	}
 
 	@Override
-	public void announce(String serviceName, String serviceURI) {
+	public void announce(String domain, String serviceName, String serviceURI) {
 		Log.info(String.format("Starting Discovery announcements on: %s for: %s -> %s\n", DISCOVERY_ADDR, serviceName,
 				serviceURI));
 
-		var pktBytes = String.format("%s%s%s", serviceName, DELIMITER, serviceURI).getBytes();
+		var pktBytes = String.format("%s:%s%s%s", domain, serviceName, DELIMITER, serviceURI).getBytes();
 		var pkt = new DatagramPacket(pktBytes, pktBytes.length, DISCOVERY_ADDR);
 
 		// start thread to send periodic announcements

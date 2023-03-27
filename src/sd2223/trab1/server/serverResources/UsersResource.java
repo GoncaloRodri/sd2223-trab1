@@ -1,4 +1,4 @@
-package sd2223.trab1.server.ServerResources;
+package sd2223.trab1.server.serverResources;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,10 +10,13 @@ import jakarta.ws.rs.WebApplicationException;
 import jakarta.ws.rs.core.Response.Status;
 import sd2223.trab1.api.User;
 import sd2223.trab1.api.rest.UsersService;
+import sd2223.trab1.discovery.Discovery;
 
 public class UsersResource implements UsersService {
 
     private final Map<String, User> users = new HashMap<String, User>();
+
+    private Discovery discovery = Discovery.getInstance();
 
     public UsersResource() {
     }
